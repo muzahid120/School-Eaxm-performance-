@@ -5,7 +5,8 @@ import numpy as np
 from sklearn.model_selection import train_test_split
 import sys
 import os 
-
+from src.component.data_transformation import DataTransformationconfig
+from src.component.data_transformation import Data_Transformation
 
 class Data_Ingestion_Config:
     train_data_path:str=os.path.join('artsfit','train_data.csv')
@@ -18,7 +19,7 @@ class Data_Ingestion:
         self.data_ingestion=Data_Ingestion_Config()
 
     def initial_data_Ingestion(self):
-        logging.info("Entered the data ingestion method or component")
+        logging.info('Entered the data ingestion method or component')
         try:
             df=pd.read_csv(r'C:\Users\SDS\Downloads\stud.csv')
             logging.info('Initial row data is reading compelet')
@@ -45,3 +46,7 @@ if __name__=='__main__':
 
     obj=Data_Ingestion()
     obj.initial_data_Ingestion()
+    transformation=Data_Transformation()
+    train_data=r'artsfit\train_data.csv'
+    test_data=r'artsfit\test_data.csv'
+    train_arr,test_arr,_=transformation.initial_data_transformation(train_data,test_data)
